@@ -21,6 +21,7 @@ RUN apt-get update && \
     # Install utilities(optional).
     apt-get install -y \
       wget \
+      curl \
       net-tools \
       vim-tiny \
       xfce4-terminal \
