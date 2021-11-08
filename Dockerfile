@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV HOME=/root \
     DEBIAN_FRONTEND=noninteractive \
@@ -10,9 +10,22 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone
 
 # Install packages
-RUN apt-get update && \
-    # Install the required packages for desktop    
-    apt-get install -y \
+RUN apt-get update
+
+# Install apt-utils
+RUN apt-get install -y apt-utils
+
+# Install japanese language packs(optional)
+RUN apt-get install -y \
+      language-pack-ja-base language-pack-ja \
+      ibus-anthy \
+      fonts-takao \
+      && \
+    echo ja_JP.UTF-8 UTF-8 >> /etc/locale.gen && \
+    dpkg-reconfigure locales
+
+# Install the required packages for desktop
+RUN apt-get install -y \
       supervisor \
       xvfb \
       xfce4 \
@@ -25,12 +38,6 @@ RUN apt-get update && \
       net-tools \
       vim-tiny \
       xfce4-terminal \
-      && \
-    # Install japanese language packs(optional)
-    apt-get install -y \
-      language-pack-ja-base language-pack-ja \
-      ibus-anthy \
-      fonts-takao \
       && \
     # Clean up
     apt-get clean && \
