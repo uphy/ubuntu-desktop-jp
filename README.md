@@ -23,7 +23,7 @@ Ubuntuデスクトップ環境を、ブラウザ上で利用することが出�
 まずはお試しで実行してみます。
 
 ```sh
-$ docker run --rm -p 8080:8080 uphy/ubuntu-desktop-jp:18.04
+$ docker run --rm -p 8080:8080 uphy/ubuntu-desktop-jp:20.04
 ```
 
 コンテナが立ち上がったら、ブラウザで[http://localhost:8080](http://localhost:8080)にアクセスしてください。
@@ -55,5 +55,5 @@ $ docker run \
     -v "$(pwd)/data/config:/root/.config" \
     -v "$(pwd)/data/Desktop:/root/Desktop" \
     -p 8080:8080 \
-    uphy/ubuntu-desktop-jp:18.04
+    uphy/ubuntu-desktop-jp:20.04
 ```
